@@ -1,7 +1,7 @@
-import 'package:feed/model/image_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
+import '../model/image_info.dart';
 import '../redux/action.dart';
 import '../redux/app_state.dart';
 
@@ -14,37 +14,19 @@ class FlickrFullImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+    return Scaffold(
+        body: Column(children: [
       // first child
-      Container(
-        margin: const EdgeInsets.all(5),
-        alignment: Alignment.center,
+      SizedBox(
+        width: 500,
         child: Image.network(
-            "https://live.staticflickr.com/${imageCard.server}/${imageCard.id}_${imageCard.secret}.jpg",
-            fit: BoxFit.fitWidth),
-      ),
-      Container(
-          height: 30,
-          //second child
-          margin: const EdgeInsets.all(5),
-          alignment: Alignment.center,
-          child: Text(
-            imageCard.title,
-            style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 22.0),
-          )),
-
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text(
-          imageCard.countLike.toString(),
-          style: const TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22.0),
+          "https://live.staticflickr.com/${imageCard.server}/${imageCard.id}_${imageCard.secret}.jpg",
+          fit: BoxFit.fitWidth,
         ),
+      ),
+      Row(mainAxisAlignment: MainAxisAlignment.start, children: [
         ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
             onPressed: () {
               var store = StoreProvider.of<AppState>(context);
               store.dispatch(LikeAction(imageCard));
@@ -52,11 +34,22 @@ class FlickrFullImageCard extends StatelessWidget {
             },
             child: const Icon(
               Icons.favorite,
-              color: Colors.pink,
+              color: Colors.redAccent,
               size: 24.0,
-              semanticLabel: 'Text to announce in accessibility modes',
-            ))
-      ])
-    ]);
+            )),
+        SizedBox(width: 10),
+        Text(
+          imageCard.countLike == 0 ? "" : imageCard.countLike.toString(),
+          style: const TextStyle(color: Colors.black54, fontSize: 18.0),
+        )
+      ]),
+      Container(
+          margin: const EdgeInsets.all(10),
+          alignment: Alignment.topLeft,
+          child: Text(
+            imageCard.title,
+            style: const TextStyle(color: Colors.black, fontSize: 18.0),
+          )),
+    ]));
   }
 }
