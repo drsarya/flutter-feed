@@ -1,16 +1,5 @@
-# projects
+# Приложение с бесконечной лентой изображений с сервиса Flickr
 
-A new Flutter project.
+В приложении используется **redux** для хранения состояния приложения.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Карточка объекта представлена фотографией, описанием и счетчиком лайков. При полноэкранном просмотре фотографии состояние карточки меняется и сохраняется в глобальном состоянии, поэтому при переходе обратно, лента содержит уже обновлённое состояние.
