@@ -28,10 +28,10 @@ class LikeAction {
 
 AppState reducer(AppState prev, dynamic action) {
   if (action is FetchImagesAction) {
-    return AppState(action.images, action.page, prev.selectedImage);
+    return AppState(action.images, action.page);
   }
   if (action is LikeAction) {
-    return AppState(prev.images, prev.page, action.image);
+    return _likeImage(prev, action);
   }
   return prev;
 }
@@ -60,24 +60,21 @@ ThunkAction<AppState> fetchImages = (Store<AppState> store) async {
   }
 };
 
-ThunkAction<AppState> likeImage = (Store<AppState> store) {
+AppState _likeImage(AppState store, LikeAction action) {
   try {
-    if (store.state.selectedImage == null) {
-      return;
-    }
     print('Like image');
-    var firstWhere = store.state.images.firstWhere((element) =>
-        element.id == store.state.selectedImage.id &&
-        element.server == store.state.selectedImage.server &&
-        element.secret == store.state.selectedImage.secret);
-    var indexOf = store.state.images.indexOf(firstWhere);
-
+    var firstWhere = store.images.firstWhere((element) =>
+        element.id == action.image.id &&
+        element.server == action.image.server &&
+        element.secret == action.image.secret);
+    var indexOfSelectedImage = store.images.indexOf(firstWhere);
+    List<FlickrImageInfo> copyImages = List.from(store.images);
     var copyWith =
-        store.state.images[indexOf].copyWith(firstWhere.countLike + 1);
-    store.state.images.setAll(indexOf, [copyWith]);
-    store.dispatch(FetchImagesAction(store.state.images, store.state.page));
+        copyImages[indexOfSelectedImage].copyWith(firstWhere.countLike + 1);
+    copyImages.setAll(indexOfSelectedImage, [copyWith]);
+    return AppState(copyImages, store.page);
   } catch (e) {
     print('caught error: $e');
-    return;
   }
-};
+  return AppState(store.images, store.page);
+}

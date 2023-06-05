@@ -30,7 +30,6 @@ class FlickrFullImageCard extends StatelessWidget {
             onPressed: () {
               var store = StoreProvider.of<AppState>(context);
               store.dispatch(LikeAction(imageCard));
-              store.dispatch(likeImage);
             },
             child: const Icon(
               Icons.favorite,
