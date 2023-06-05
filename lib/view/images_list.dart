@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 
 import '../redux/action.dart';
 import '../redux/app_state.dart';
+import '../resources/dimens.dart';
 import 'image_card.dart';
 import 'image_full_card.dart';
 
@@ -31,7 +32,7 @@ class ImagesListState extends State {
                       scrollDirection: Axis.vertical,
                       itemCount: state.images.length,
                       itemBuilder: (context, index) {
-                        if (index == state.images.length -1) {
+                        if (index == state.images.length - 1) {
                           var store = StoreProvider.of<AppState>(context);
                           store.dispatch(fetchImages);
                         }
@@ -53,12 +54,7 @@ class ImagesListState extends State {
                           },
                         );
                       },
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 350,
-                              mainAxisExtent: 300,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10),
+                      gridDelegate: UIDimentions.gridPadding,
                     );
                   },
                 ),

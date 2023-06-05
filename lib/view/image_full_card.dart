@@ -4,6 +4,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 import '../model/image_info.dart';
 import '../redux/action.dart';
 import '../redux/app_state.dart';
+import '../resources/colors.dart';
+import '../resources/dimens.dart';
+import '../resources/styles.dart';
 
 class FlickrFullImageCard extends StatelessWidget {
   final FlickrImageInfo imageCard;
@@ -18,7 +21,7 @@ class FlickrFullImageCard extends StatelessWidget {
         body: Column(children: [
       // first child
       SizedBox(
-        width: 500,
+        width: UIDimentions.fullImageHeight,
         child: Image.network(
           "https://live.staticflickr.com/${imageCard.server}/${imageCard.id}_${imageCard.secret}.jpg",
           fit: BoxFit.fitWidth,
@@ -33,17 +36,17 @@ class FlickrFullImageCard extends StatelessWidget {
             },
             child: const Icon(
               Icons.favorite,
-              color: Colors.redAccent,
-              size: 24.0,
+              color: UIColors.colorLikeIcon,
+              size: UIDimentions.likeIconSize,
             )),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Text(
           imageCard.countLike == 0 ? "" : imageCard.countLike.toString(),
-          style: const TextStyle(color: Colors.black54, fontSize: 18.0),
+          style: UIStyles.text_style(UIColors.counterTextColor),
         )
       ]),
       Container(
-          margin: const EdgeInsets.all(10),
+          margin: UIDimentions.defaultPadding,
           alignment: Alignment.topLeft,
           child: Text(
             imageCard.title,

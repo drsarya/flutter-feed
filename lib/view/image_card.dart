@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feed/resources/colors.dart';
+import 'package:flutter_feed/resources/dimens.dart';
+import 'package:flutter_feed/resources/styles.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 import '../model/image_info.dart';
@@ -18,9 +21,9 @@ class FlickrImageCard extends StatelessWidget {
         decoration: BoxDecoration(border: Border.all(color: Colors.white54)),
         child: Column(children: [
           // first child
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: 200,
+            height: UIDimentions.smallImageHeight,
             child: Image.network(
               "https://live.staticflickr.com/${imageCard.server}/${imageCard.id}_${imageCard.secret}.jpg",
               fit: BoxFit.cover,
@@ -35,22 +38,22 @@ class FlickrImageCard extends StatelessWidget {
                 },
                 child: const Icon(
                   Icons.favorite,
-                  color: Colors.redAccent,
-                  size: 24.0,
+                  color: UIColors.colorLikeIcon,
+                  size: UIDimentions.likeIconSize,
                 )),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Text(
               imageCard.countLike == 0 ? "" : imageCard.countLike.toString(),
-              style: const TextStyle(color: Colors.black54, fontSize: 18.0),
+              style: UIStyles.text_style(UIColors.counterTextColor),
             )
           ]),
           Container(
               //second child
-              margin: const EdgeInsets.all(10),
+              margin: UIDimentions.defaultPadding,
               alignment: Alignment.topLeft,
               child: Text(
                 imageCard.title,
-                style: const TextStyle(color: Colors.black, fontSize: 15.0),
+                style: UIStyles.text_style(Colors.black),
               )),
         ]));
   }
