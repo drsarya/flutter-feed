@@ -31,7 +31,7 @@ class ImagesListState extends State {
                       scrollDirection: Axis.vertical,
                       itemCount: state.images.length,
                       itemBuilder: (context, index) {
-                        if (index == state.images.length - 20) {
+                        if (index == state.images.length -1) {
                           var store = StoreProvider.of<AppState>(context);
                           store.dispatch(fetchImages);
                         }
