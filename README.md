@@ -1,16 +1,19 @@
-# projects
+# Бесконечная лента изображений из сервиса Flickr
 
-A new Flutter project.
+В приложении используется **redux** для хранения состояния приложения.
 
-## Getting Started
+Карточка объекта представлена фотографией, описанием и счетчиком лайков. При полноэкранном просмотре фотографии состояние карточки меняется и сохраняется в глобальном состоянии, поэтому при переходе обратно, лента содержит уже обновлённые значения.
 
-This project is a starting point for a Flutter application.
+Бесконечная лента основана на индексе списка карточек: если до конца ленты остаётся меньше n-элементов, производится подгрузка новой страницы. При этом ранее просмотренные элементы остаются в глобальном состоянии.  
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+На видео с демонстрацией работы приложения в правой части отображаются логи, сигнализирующие о подгрзуке данных и событиях лайков. 
+
+
+
+
+
+
+https://github.com/drsarya/flutter-feed/assets/63103401/72433609-0821-4f65-9dd2-e9839d45dc3d
+
