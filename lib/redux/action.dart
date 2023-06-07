@@ -41,7 +41,7 @@ ThunkAction<AppState> fetchImages = (Store<AppState> store) async {
     print('LOAD DATA ${store.state.page}');
     final String key = "baad74872a87835b1b407a608d86058f";
     final String userId = "151794345@N05";
-    final int pageSize = 20;
+    final int pageSize = 10;
     Response response = await get(Uri.parse(
         'https://www.flickr.com/services/rest/?method=flickr.photos.getPopular&api_key=$key&format=json&user_id=$userId&page=${store.state.page.toString()}&per_page=${pageSize}'));
     var body = "";
@@ -63,7 +63,7 @@ ThunkAction<AppState> fetchImages = (Store<AppState> store) async {
 
 AppState _likeImage(AppState store, LikeAction action) {
   try {
-    print('Like image');
+    print('LIKE ${action.image.title}');
     var firstWhere = store.images.firstWhere((element) =>
         element.id == action.image.id &&
         element.server == action.image.server &&

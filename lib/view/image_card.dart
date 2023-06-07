@@ -18,7 +18,7 @@ class FlickrImageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(border: Border.all(color: Colors.white54)),
+        decoration: BoxDecoration(border: Border.all(color: Colors.black38)),
         child: Column(children: [
           // first child
           SizedBox(
