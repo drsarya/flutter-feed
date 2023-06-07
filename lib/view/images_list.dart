@@ -28,12 +28,15 @@ class ImagesListState extends State {
                 child: StoreConnector<AppState, AppState>(
                   converter: (store) => store.state,
                   builder: (_, state) {
+                    var store = StoreProvider.of<AppState>(context);
+                    if (state.images.isEmpty) {
+                      store.dispatch(fetchImages);
+                    }
                     return GridView.builder(
                       scrollDirection: Axis.vertical,
                       itemCount: state.images.length,
                       itemBuilder: (context, index) {
                         if (index == state.images.length - 1) {
-                          var store = StoreProvider.of<AppState>(context);
                           store.dispatch(fetchImages);
                         }
                         return GestureDetector(

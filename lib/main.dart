@@ -8,8 +8,6 @@ import 'package:redux_thunk/redux_thunk.dart';
 
 void main() => runApp(MyApp());
 
-typedef FetchTime = void Function();
-
 class MyApp extends StatelessWidget {
   final store = Store(reducer,
       initialState: AppState.initialState(), middleware: [thunkMiddleware]);
@@ -17,7 +15,6 @@ class MyApp extends StatelessWidget {
 // root widget
   @override
   Widget build(BuildContext context) {
-    store.dispatch(fetchImages);
     return StoreProvider(
       store: store,
       child: MaterialApp(
