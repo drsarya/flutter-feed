@@ -4,6 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import '../redux/action.dart';
 import '../redux/app_state.dart';
 import '../resources/dimens.dart';
+import '../resources/text.dart';
 import 'image_card.dart';
 import 'image_full_card.dart';
 
@@ -17,7 +18,7 @@ class ImagesListState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Лента изображений Flickr"),
+          title: const Text(UIText.title),
         ),
         body: Center(
             child: SizedBox(

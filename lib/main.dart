@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feed/redux/action.dart';
 import 'package:flutter_feed/redux/app_state.dart';
+import 'package:flutter_feed/resources/text.dart';
 import 'package:flutter_feed/view/images_list.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
     return StoreProvider(
       store: store,
       child: MaterialApp(
-        title: 'Flutter Redux Demo',
+        title: UIText.titleRoot,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

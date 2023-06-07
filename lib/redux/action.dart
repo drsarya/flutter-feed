@@ -41,8 +41,9 @@ ThunkAction<AppState> fetchImages = (Store<AppState> store) async {
     print('LOAD DATA ${store.state.page}');
     final String key = "baad74872a87835b1b407a608d86058f";
     final String userId = "151794345@N05";
+    final int pageSize = 20;
     Response response = await get(Uri.parse(
-        'https://www.flickr.com/services/rest/?method=flickr.photos.getPopular&api_key=$key&format=json&user_id=$userId&page=${store.state.page.toString()}&per_page=40'));
+        'https://www.flickr.com/services/rest/?method=flickr.photos.getPopular&api_key=$key&format=json&user_id=$userId&page=${store.state.page.toString()}&per_page=${pageSize}'));
     var body = "";
     if (response.body.startsWith("jsonFlickrApi(")) {
       body = response.body.substring(14, response.body.length - 1);
